@@ -1,8 +1,7 @@
-FROM docker.io/n8nio/n8n:latest
+FROM n8nio/n8n:latest-debian
 
 USER root
 
-# Install ffmpeg (Debian)
 RUN apt-get update && \
     apt-get install -y ffmpeg && \
     rm -rf /var/lib/apt/lists/*
