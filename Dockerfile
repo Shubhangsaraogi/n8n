@@ -1,19 +1,7 @@
-FROM node:20-bookworm-slim
+FROM n8nio/n8n:latest
 
-# Install ffmpeg + basic utilities
-RUN apt-get update && \
-    apt-get install -y ffmpeg tini && \
-    rm -rf /var/lib/apt/lists/*
+USER root
 
-# Install n8n globally
-RUN npm install -g n8n@2.6.4
+RUN apk update && apk add --no-cache ffmpeg
 
-# Create n8n user
-RUN useradd -m node
 USER node
-WORKDIR /home/node
-
-EXPOSE 5678
-
-ENTRYPOINT ["tini", "--"]
-CMD ["n8n"]
