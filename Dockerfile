@@ -2,10 +2,9 @@ FROM docker.io/n8nio/n8n:latest
 
 USER root
 
-# Install ffmpeg
-RUN apk add --no-cache ffmpeg
-
-# Optional: verify installation
-RUN ffmpeg -version
+# Install ffmpeg (Debian)
+RUN apt-get update && \
+    apt-get install -y ffmpeg && \
+    rm -rf /var/lib/apt/lists/*
 
 USER node
